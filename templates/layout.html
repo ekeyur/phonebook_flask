@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <nav class="navbar bg-primary" style="background-color: #e3f2fd;">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">All Entries</a>
+      <a class="navbar-brand" href="/new_entry">New Entry</a>
+      <a class="navbar-brand" href="/update_entry">Update Entry</a>
+      <a class="navbar-brand" href="/delete_entry">Delete Entry</a>
+    </div>
+  </div>
+</nav>
+  {% block body %}
+  <body>
+    <h1> Hello world, this is keyur </h1>
+    <h2> Layout.html </h2>
+  </body>
+  {% endblock %}
+</html>
