@@ -16,24 +16,36 @@ def home():
     )
 @app.route('/update_entry')
 def update_entry():
-    return render_template(
-    'update_entry.html',
-    title = 'Update Entry'
-    )
-
-@app.route('/submit_update_entry', medthods=['POST'])
-def submit_update_form():
-    d = request.args.get('id')
-    if not id:
-        return redirect('/')
+    id = request.args.get('id')
     sql = 'select * from phonebook where id = %s' % id
-    print sql
     result_list = db.query(sql).namedresult()
     entry = result_list[0]
     return render_template(
-        'update_entry.html',
-        title='Update Entry',
-        entry=entry)
+    'update_entry.html',
+    title = 'Update Entry',
+    entry = entry
+    )
+
+@app.route('/submit_update_entry', methods=['POST'])
+def submit_update_form():
+    id = int(request.form.get('id'))
+    name = request.form.get('name')
+    phone = request.form.get('phone')
+    email = request.form.get('email')
+    action = request.form.get('action')
+    if action == 'delete':
+        db.delete('phonebook', { 'id': id })
+    elif action == 'update':
+        db.update('phonebook',{
+        'id' : id,
+        'name' : name,
+        'phone_number' : phone,
+        'email' : email
+        })
+    else:
+        raise Exception("I don know how to %s" % action)
+    return redirect('/')
+
 
 @app.route('/new_entry')
 def new_entry_form():
