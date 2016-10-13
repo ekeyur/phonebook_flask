@@ -14,6 +14,26 @@ def home():
      contacts = contacts,
      title='All Entries'
     )
+@app.route('/update_entry')
+def update_entry():
+    return render_template(
+    'update_entry.html',
+    title = 'Update Entry'
+    )
+
+@app.route('/submit_update_entry', medthods=['POST'])
+def submit_update_form():
+    d = request.args.get('id')
+    if not id:
+        return redirect('/')
+    sql = 'select * from phonebook where id = %s' % id
+    print sql
+    result_list = db.query(sql).namedresult()
+    entry = result_list[0]
+    return render_template(
+        'update_entry.html',
+        title='Update Entry',
+        entry=entry)
 
 @app.route('/new_entry')
 def new_entry_form():
