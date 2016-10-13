@@ -5,10 +5,11 @@ db = pg.DB(dbname='phonebook_db')
 
 app = Flask('MyFormApp')
 
-contacts = db.query('select * from phonebook').namedresult()
+
 
 @app.route('/')
 def home():
+    contacts = db.query('select * from phonebook').namedresult()
     return render_template(
     'phonebook.html',
      contacts = contacts,
